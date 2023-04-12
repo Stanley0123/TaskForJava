@@ -5,8 +5,9 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class JavaSchoolStarter {
-    public static List<Map<String, Object>> array = new ArrayList<>();
+    private static List<Map<String, Object>> array = new ArrayList<>();
     private Validator validator = new Validator();
+    //Метод для выполнения
 
     public List<Map<String, Object>> execute(String str) throws Exception {
         List<Map<String, Object>> mapList = new ArrayList<>();
@@ -33,7 +34,7 @@ public class JavaSchoolStarter {
         //--------------------------------------------------------------------------------------------------------------------
         return mapList;
     }
-
+    //Метод для вставки
     private List<Map<String, Object>> insert(String str) throws Exception {
         Pattern p = Pattern.compile(RegexContainer.valuesWord);
         Matcher m = p.matcher(str);
@@ -73,7 +74,7 @@ public class JavaSchoolStarter {
         list.add(mapBuf);
         return list;
     }
-
+    //Метод для выборки
     private List<Map<String, Object>> select(String str) {
         Pattern p = Pattern.compile(RegexContainer.whereWord);
         Matcher m = p.matcher(str);
@@ -87,7 +88,7 @@ public class JavaSchoolStarter {
             return array;
         }
     }
-
+    //Метод для обновления
     private List<Map<String, Object>> update(String str) throws Exception{
         Pattern p = Pattern.compile(RegexContainer.valuesWord);
         Matcher m = p.matcher(str);
@@ -209,7 +210,7 @@ public class JavaSchoolStarter {
 
         return listMapBuf;
     }
-
+    //Метод для удаления
     private List<Map<String, Object>> delete(String str) {
         Pattern p = Pattern.compile(RegexContainer.whereWord);
         Matcher m = p.matcher(str);

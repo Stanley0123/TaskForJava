@@ -28,12 +28,16 @@ public class RegexContainer {
     public static final String ageCondition = "(\\s*'(?i)age'\\s*(((=|!=)\\s*null)|((=|!=|>=|<=|>|<)\\s*(\\d+)))\\s*)";
     public static final String activeCondition = "(\\s*'(?i)active'\\s*(=|!=)\\s*(true|false|null)\\s*)";
     public static final String costCondition = "(\\s*(?i)'cost'\\s*(((=|!=)\\s*null)|((=|!=|>=|<=|>|<)\\s*(\\d+[.]\\d+)))\\s*)";
-    public static final String likeOrIlikeOperator = "((like|ilike)\\s*('[%]?[^',%]*[%]?'\\s*))";
+    public static final String likeOrIlikeOperator = "((?i)(like|ilike)\\s*('[%]?[^',%]*[%]?'\\s*))";
     public static final String lastNameCondition = "(\\s*'(?i)lastName'\\s*(((=|!=)\\s*('[^',%]*'|null))|"+likeOrIlikeOperator+")\\s*)";
+    //группа условий не включающая скобки
     public static final String groupCondition = idCondition + "|" + ageCondition + "|" + activeCondition + "|" + costCondition + "|" + lastNameCondition;
+   //группа условий включающая скобки
     public static final String groupConditionAndBracket = "\\s*[(]*\\s*(" + idCondition + "|" + ageCondition + "|" + activeCondition + "|" + costCondition + "|" + lastNameCondition + ")\\s*[)]*\\s*";
     //-------------------------------------------
+    //необязательный where
     public static final String whereCondition = "(\\s+(?i)where\\s+[(]*\\s*(" + groupCondition + ")\\s*[)]*\\s*)?";
+    //обязательный where
     public static final String whereNecessaryCondition = "(\\s+(?i)where\\s+[(]*\\s*(" + groupCondition + ")\\s*[)]*\\s*)";
     public static final String valuesEquals = "\\s+(?i)values\\s+(" + groupEquals + ")\\s*";
     public static final String values = "\\s+(?i)values\\s+";

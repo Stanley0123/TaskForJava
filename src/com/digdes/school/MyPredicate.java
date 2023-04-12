@@ -6,6 +6,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class MyPredicate {
+    //Метод для перевода поля lastname и значения с математическим оператором (= или !=) и like и ilike в предикат в условии where
     public static Predicate<Map<String, Object>> lastNameToPredicate(String str) {
         Predicate<Map<String, Object>> predicate = null;
         String regex = "^\\s*'(?i)lastName'";
@@ -54,7 +55,7 @@ public class MyPredicate {
                         };
                     }
                 }
-            } else if (bufferString.matches("\\s+like\\s+'[%]?[^',%]*[%]?'\\s*")) {
+            } else if (bufferString.matches("\\s+(?i)like\\s+'[%]?[^',%]*[%]?'\\s*")) {
                 Pattern pattern2 = Pattern.compile("'[^',%]*'");
                 Matcher matcher2 = pattern2.matcher(bufferString);
                 Pattern pattern3 = Pattern.compile("'%[^',%]*'");
@@ -111,7 +112,7 @@ public class MyPredicate {
                         return flag;
                     };
                 }
-            } else if (bufferString.matches("\\s+ilike\\s+'[%]?[^',%]*[%]?'\\s*")) {
+            } else if (bufferString.matches("\\s+(?i)ilike\\s+'[%]?[^',%]*[%]?'\\s*")) {
                 Pattern pattern2 = Pattern.compile("'[^',%]*'");
                 Matcher matcher2 = pattern2.matcher(bufferString);
                 Pattern pattern3 = Pattern.compile("'%[^',%]*'");
@@ -173,7 +174,7 @@ public class MyPredicate {
         }
         return predicate;
     }
-
+    //Метод для перевода поля id и значения с математическим оператором в предикат в условии where
     public static Predicate<Map<String, Object>> idToPredicate(String str) {
         Predicate<Map<String, Object>> predicate = null;
         String regex = "^\\s*'(?i)id'";
@@ -286,7 +287,7 @@ public class MyPredicate {
         }
         return predicate;
     }
-
+    //Метод для перевода поля cost и значения с математическим оператором в предикат в условии where
     public static Predicate<Map<String, Object>> costToPredicate(String str) {
         Predicate<Map<String, Object>> predicate = null;
         String regex = "^\\s*'(?i)cost'";
@@ -399,7 +400,7 @@ public class MyPredicate {
         }
         return predicate;
     }
-
+    //Метод для перевода поля age и значения с математическим оператором в предикат в условии where
     public static Predicate<Map<String, Object>> ageToPredicate(String str) {
         Predicate<Map<String, Object>> predicate = null;
         String regex = "^\\s*'(?i)age'";
@@ -512,7 +513,7 @@ public class MyPredicate {
         }
         return predicate;
     }
-
+    //Метод для перевода поля active  и значения с математическим оператором в предикат в условии where
     public  static Predicate<Map<String, Object>> activeToPredicate(String str) {
         Predicate<Map<String, Object>> predicate = null;
         String regex = "^\\s*'(?i)active'";

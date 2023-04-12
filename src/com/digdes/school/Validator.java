@@ -5,7 +5,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Validator {
-
+    //метод выполнения валидации
     public Commands execute(String bufferString) throws Exception {
         Commands commands;
         String[] massive = bufferString.split("(,|(\\s+(?i)AND\\s+)|(\\s+(?i)OR\\s+))");
@@ -37,7 +37,8 @@ public class Validator {
         return commands;
 
     }
-    public void validation(String[] bufferArray, String bufferString, Commands command) throws Exception {
+    //метод валидирования
+    private void validation(String[] bufferArray, String bufferString, Commands command) throws Exception {
         switch (command) {
             case INSERT -> {
                 InsertValidation(bufferArray, bufferString);
@@ -57,7 +58,7 @@ public class Validator {
             }
         }
     }
-
+    //метод валидирования для команды INSERT
     private void InsertValidation(String[] bufferArray, String bufferString) throws Exception {
         boolean idFlag = false;
         boolean costFlag = false;
@@ -103,6 +104,7 @@ public class Validator {
         }
 
     }
+    //метод валидирования для команды UPDATE
     private void UpdateValidation(String[] bufferArray, String bufferString) throws Exception {
         boolean idFlag = false;
         boolean costFlag = false;
@@ -217,7 +219,7 @@ public class Validator {
         }
         bracketChecker(bufferString);
     }
-
+    //метод валидирования для команды SELECT
     private void SelectValidation(String[] bufferArray, String bufferString) throws Exception {
         boolean whereFlag = false;
         boolean errors = false;
@@ -248,7 +250,7 @@ public class Validator {
         }
         bracketChecker(bufferString);
     }
-
+    //метод валидирования для команды DELETE
     private void DeleteValidation(String[] bufferArray, String bufferString) throws Exception {
         boolean whereFlag = false;
         boolean errors = false;
@@ -279,8 +281,8 @@ public class Validator {
         }
         bracketChecker(bufferString);
     }
-
-    public static void bracketChecker(String bufferString) throws Exception {
+    //метод для проверки правильности скобок
+    private static void bracketChecker(String bufferString) throws Exception {
         Pattern p = Pattern.compile(RegexContainer.whereWord);
         Matcher m = p.matcher(bufferString);
         if (m.find()){

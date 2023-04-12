@@ -9,6 +9,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class ValueAndWhereScanner {
+    //метод для забратия значений аргументов из запроса
     public  Map<String, Object> valuesScanner(String str) {
         Map<String, Object> map = new HashMap<>();
         String[] massive = str.split(",");
@@ -118,7 +119,7 @@ public class ValueAndWhereScanner {
         }
         return map;
     }
-
+    //логический анализатор предиката булевой алгебры со скобками
     public  Predicate<Map<String, Object>> whereScanner(String str){
         Predicate<Map<String, Object>> predicate = null;
         String buffered = str.strip();
@@ -182,7 +183,8 @@ public class ValueAndWhereScanner {
         predicate = or(listOr);
         return  predicate;
     }
-    public  boolean isThisExternalBracket(String str){
+    //определение внешняя ли скобка
+    private  boolean isThisExternalBracket(String str){
         boolean val = false;
         short sizeIndex = 0;
         String regex = "^\\s*[(]";
@@ -214,8 +216,8 @@ public class ValueAndWhereScanner {
 
         return val;
     }
-
-    public  int bracketInt(String str){
+    //определение конца скобки
+    private  int bracketInt(String str){
         boolean val = false;
         short sizeIndex = 0;
         String regex = "[(]";
@@ -239,8 +241,8 @@ public class ValueAndWhereScanner {
         }
         return start + sizeIndex;
     }
-
-    public  String deleteExternal(String str){
+    //удаление внешних всех скобок
+    private  String deleteExternal(String str){
         boolean factor = true;
         while (factor){
             str = str.strip();
@@ -254,16 +256,16 @@ public class ValueAndWhereScanner {
         return str;
     }
 
-
-    public  Predicate<Map<String, Object>> or(List<Predicate<Map<String, Object>>> list) {
+    //метод для or-ивания and всех предикатов из списка
+    private  Predicate<Map<String, Object>> or(List<Predicate<Map<String, Object>>> list) {
 //        Predicate<Map<String, Object>> predicate = list.get(0);
 //        for (int i = 1; i < list.size(); i++){
 //            predicate = predicate.or(list.get(i));
 //        }
         return list.stream().reduce(Predicate::or).orElse(x -> false);
     }
-
-    protected  Predicate<Map<String, Object>> and(List<Predicate<Map<String, Object>>> list) {
+    //метод для and-ивания всех предикатов из списка
+    private  Predicate<Map<String, Object>> and(List<Predicate<Map<String, Object>>> list) {
 //        Predicate<Map<String, Object>> predicate = list.get(0);
 //        for (int i = 1; i < list.size(); i++){
 //            predicate = predicate.or(list.get(i));
