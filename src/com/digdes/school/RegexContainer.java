@@ -5,7 +5,7 @@ public class RegexContainer {
     public static final String select = "^\\s*(?i)select\\s*";
     public static final String update = "^\\s*(?i)update\\s*";
     public static final String delete = "^\\s*(?i)delete\\s*";
-    public static final String whereWord = "(\\b(?i)where\\b)";
+    public static final String whereWord = "(\\s+\\b(?i)where\\b\\s+)";
     public static final String valuesWord = "(\\b(?i)values\\b)";
     public static final String andWord = "^\\s*(\\b(?i)AND\\b)";
     public static final String orWord = "^\\s*(\\b(?i)OR\\b)";

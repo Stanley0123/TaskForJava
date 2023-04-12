@@ -13,19 +13,19 @@ public class JavaSchoolStarter {
         Commands commands = validator.execute(str);
         switch (commands){
             case INSERT -> {
-                System.out.println("INSERT VALIDATION IS OK");
+                //System.out.println("INSERT VALIDATION IS OK");
                 mapList = insert(str);
             }
             case UPDATE -> {
-                System.out.println("UPDATE VALIDATION IS OK");
+                //System.out.println("UPDATE VALIDATION IS OK");
                 mapList = update(str);
             }
             case SELECT -> {
-                System.out.println("SELECT VALIDATION IS OK");
+                //System.out.println("SELECT VALIDATION IS OK");
                 mapList = select(str);
             }
             case DELETE -> {
-                System.out.println("DELETE VALIDATION IS OK");
+                //System.out.println("DELETE VALIDATION IS OK");
                 mapList = delete(str);
 
             }
@@ -91,7 +91,7 @@ public class JavaSchoolStarter {
     private List<Map<String, Object>> update(String str) throws Exception{
         Pattern p = Pattern.compile(RegexContainer.valuesWord);
         Matcher m = p.matcher(str);
-        Pattern p1 = Pattern.compile("[^'][^lL][^aA][^sS][^tT][^nN][^aA][^mM][^eE][^']\\s*[^=]\\s*(\\b[^']\\s*(?i)where\\s*[^']\\b)");
+        Pattern p1 = Pattern.compile(RegexContainer.whereWord);
         Matcher m1 = p1.matcher(str);
         List<Map<String, Object>> listMapBuf = new ArrayList<>();
         if (!m1.find()){
@@ -125,7 +125,7 @@ public class JavaSchoolStarter {
                     }
                 }
                 if (allNull){
-                    System.out.println("Update");
+                    //System.out.println("Update");
                     throw new RuntimeException();
                 }
                 if (mapBuf.containsKey("lastName") && mapBuf.get("lastName") == null){
@@ -184,7 +184,7 @@ public class JavaSchoolStarter {
                         }
                     }
                     if (allNull){
-                        System.out.println("UpdateWhere");
+                        //System.out.println("UpdateWhere");
                         throw new RuntimeException();
                     }
                     if (mapBuf.containsKey("lastName") && mapBuf.get("lastName") == null){
