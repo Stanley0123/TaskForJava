@@ -9,7 +9,7 @@ public class RegexContainer {
     public static final String valuesWord = "(\\b(?i)values\\b)";
     public static final String andWord = "^\\s*(\\b(?i)AND\\b)";
     public static final String orWord = "^\\s*(\\b(?i)OR\\b)";
-    public static final String orAndWord = "(\\b((?i)AND|(?i)OR)\\b)";
+    public static final String orAndWord = "(\\b[^']\\s*((?i)AND|(?i)OR)\\s*[^']\\b)";
     public static final String nullWord = "\\s*\\b((?i)null)\\b\\s*";
     public static final String trueFalseWord = "\\b((?i)true|(?i)false)\\b";
     public static final String groupTrueFalseNull = "\\b((?i)true|(?i)false|(?i)null)\\b";

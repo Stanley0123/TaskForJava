@@ -1,5 +1,6 @@
 package com.digdes.school;
 
+import java.util.Stack;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -189,7 +190,7 @@ public class Validator {
 
             }
         }
-        Pattern p = Pattern.compile(RegexContainer.whereWord);
+        Pattern p = Pattern.compile("[^'][^lL][^aA][^sS][^tT][^nN][^aA][^mM][^eE][^']\\s*[^=]\\s*(\\b[^']\\s*(?i)where\\s*[^']\\b)");
         Matcher m = p.matcher(bufferString);
         String andOrRegex = RegexContainer.orAndWord;
         if (m.find()){
@@ -304,4 +305,3 @@ public class Validator {
         }
     }
 }
-

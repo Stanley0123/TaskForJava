@@ -9,7 +9,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class ValueAndWhereScanner {
-    public Map<String, Object> valuesScanner(String str) {
+    public  Map<String, Object> valuesScanner(String str) {
         Map<String, Object> map = new HashMap<>();
         String[] massive = str.split(",");
         for (int i = 0; i < massive.length; i++){
@@ -40,7 +40,7 @@ public class ValueAndWhereScanner {
                 if (matcher.find()) {
                     int startSign = matcher.end();
                     String bufferString = massive[i].substring(startSign, massive[i].length());
-                    if (Pattern.compile(RegexContainer.nullWord).matcher(bufferString).find()) {
+                    if (Pattern.compile("\\s*\\b[^']\\s*((?i)null)\\s*[^']\\b\\s*").matcher(bufferString).find()) {
                         map.put("lastName", null);
                     } else {
                         Pattern pattern2 = Pattern.compile("'[^',%]*'");
@@ -119,7 +119,7 @@ public class ValueAndWhereScanner {
         return map;
     }
 
-    public Predicate<Map<String, Object>> whereScanner(String str){
+    public  Predicate<Map<String, Object>> whereScanner(String str){
         Predicate<Map<String, Object>> predicate = null;
         String buffered = str.strip();
         buffered = deleteExternal(buffered);
